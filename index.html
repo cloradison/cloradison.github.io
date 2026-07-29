@@ -189,6 +189,7 @@
     gap: 48px;
     animation: fadeUp 1s 0.9s both;
   }
+  .hero-stats-mobile { display: none; }
   .stat-num {
     font-family: 'Montserrat', sans-serif;
     font-size: 44px;
@@ -851,7 +852,7 @@
     nav { padding: 24px 28px; }
     nav .nav-links { display: none; }
     .hero { grid-template-columns: 1fr; min-height: auto; }
-    .hero-left { padding: 112px 24px 44px; }
+    .hero-left { padding: 112px 24px 24px; }
     .hero-eyebrow {
       font-size: 9px;
       letter-spacing: 2.5px;
@@ -871,17 +872,21 @@
     }
     .hero-tagline {
       max-width: 100%;
-      margin-bottom: 36px;
+      margin-bottom: 0;
       font-size: 12px;
       letter-spacing: 1px;
       line-height: 1.8;
     }
-    .hero-stats {
+    .hero-left .hero-stats { display: none; }
+    .hero-stats-mobile {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 12px;
       width: 100%;
+      max-width: 340px;
+      margin-top: 26px;
       text-align: center;
+      animation: fadeUp 1s 0.9s both;
     }
     .stat-num { font-size: 34px; }
     .stat-label {
@@ -891,11 +896,13 @@
     }
     .hero-right {
       display: flex;
-      min-height: 410px;
-      padding: 16px 24px 62px;
+      flex-direction: column;
+      justify-content: flex-start;
+      min-height: auto;
+      padding: 0 24px 48px;
     }
     .hero-img-frame { width: min(260px, 72vw); height: 325px; }
-    .hero-ring { right: 10px; bottom: 14px; width: 70px; height: 70px; }
+    .hero-ring { display: none; }
     .hero-bg-text, .scroll-indicator { display: none; }
     .cursor, .cursor-ring { display: none; }
     body, .skill-card, .btn-primary { cursor: auto; }
@@ -984,6 +991,21 @@
           alt="Portrait de Radison Clo Germain Stephano"
           class="hero-portrait"
         >
+      </div>
+    </div>
+
+    <div class="hero-stats hero-stats-mobile">
+      <div>
+        <div class="stat-num">10</div>
+        <div class="stat-label">Ans d'expérience</div>
+      </div>
+      <div>
+        <div class="stat-num">5</div>
+        <div class="stat-label">Domaines<br>de compétences</div>
+      </div>
+      <div>
+        <div class="stat-num">2</div>
+        <div class="stat-label">Langues</div>
       </div>
     </div>
 
