@@ -321,11 +321,17 @@
   .about { background: var(--dark2); }
   .about-grid {
     display: grid;
-    grid-template-columns: 1fr 1.4fr;
-    gap: 100px;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 80px;
     align-items: center;
     max-width: 1200px;
     margin: 0 auto;
+  }
+
+  .about .section-title {
+    font-size: clamp(36px, 3.8vw, 52px);
+    line-height: 1.22;
+    letter-spacing: -0.3px;
   }
 
   .about-text {
@@ -960,7 +966,11 @@
   <div class="about-grid">
     <div>
       <div class="section-label">À propos</div>
-      <h2 class="section-title">Un professionnel<br><em style="font-style:italic;color:var(--gold-light)">visuel</em> au service<br>de vos projets</h2>
+      <h2 class="section-title">
+        Un professionnel<br>
+        du <em style="font-style:italic;color:var(--gold-light)">visuel</em> au service<br>
+        de vos projets
+      </h2>
       <p class="about-text">
         Professionnel du multimédia avec <strong style="color:var(--white);font-weight:500">10 ans d'expérience</strong> en production audiovisuelle, design graphique et informatique. Spécialisé dans la création de contenus visuels pour la télévision et les supports digitaux.
       </p>
