@@ -468,6 +468,73 @@
   .portfolio-actions { display: flex; flex-wrap: wrap; gap: 14px; }
   .portfolio-actions .btn-primary { padding: 15px 24px; }
 
+  .portfolio-viewer {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    display: none;
+    background: rgba(2,8,18,0.96);
+    backdrop-filter: blur(12px);
+  }
+  .portfolio-viewer.open { display: flex; flex-direction: column; }
+  .portfolio-viewer-header {
+    min-height: 72px;
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+    background: #071426;
+  }
+  .portfolio-viewer-title { font-size: 15px; font-weight: 600; letter-spacing: 1px; }
+  .portfolio-viewer-count { color: var(--gold-light); font-size: 12px; letter-spacing: 1.5px; }
+  .portfolio-viewer-close {
+    width: 44px; height: 44px; border: 1px solid rgba(255,255,255,0.22);
+    background: transparent; color: #fff; font-size: 25px; cursor: pointer;
+  }
+  .portfolio-viewer-stage {
+    flex: 1;
+    min-height: 0;
+    padding: 18px 78px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .portfolio-viewer-image {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    display: block;
+    object-fit: contain;
+    box-shadow: 0 18px 60px rgba(0,0,0,0.42);
+  }
+  .portfolio-viewer-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 48px; height: 64px;
+    border: 1px solid rgba(201,168,76,0.5);
+    background: rgba(7,20,38,0.9);
+    color: var(--gold-light);
+    font-size: 26px;
+    cursor: pointer;
+  }
+  .portfolio-viewer-prev { left: 18px; }
+  .portfolio-viewer-next { right: 18px; }
+  .portfolio-viewer-nav:disabled { opacity: 0.25; cursor: default; }
+  .portfolio-viewer-help {
+    padding: 9px 20px 13px;
+    text-align: center;
+    color: rgba(255,255,255,0.52);
+    font-size: 11px;
+    letter-spacing: 1px;
+  }
+  body.viewer-open { overflow: hidden; }
+
   @media (min-width: 901px) {
     .portfolio-panel { align-items: start; }
     .portfolio-preview {
@@ -966,6 +1033,14 @@
     .portfolio-preview { min-height: 210px; }
     .portfolio-projects { grid-template-columns: 1fr; }
     .portfolio-actions .btn-primary { width: 100%; justify-content: center; }
+    .portfolio-viewer-header { padding: 10px 12px; min-height: 62px; }
+    .portfolio-viewer-title { font-size: 12px; }
+    .portfolio-viewer-count { font-size: 10px; }
+    .portfolio-viewer-stage { padding: 10px 44px; }
+    .portfolio-viewer-nav { width: 38px; height: 54px; font-size: 22px; }
+    .portfolio-viewer-prev { left: 3px; }
+    .portfolio-viewer-next { right: 3px; }
+    .portfolio-viewer-help { font-size: 9px; }
     .skills-grid { grid-template-columns: 1fr; }
     .skill-card { padding: 30px 22px; }
     .contact-actions {
@@ -1220,7 +1295,7 @@
           <li>Postproduction & conception graphique</li><li>Production événementielle & régie</li>
         </ul>
         <div class="portfolio-actions">
-          <a href="assets/portfolio/parcours-makingof.pdf" class="btn-primary" target="_blank" rel="noopener"><span>Voir le portfolio complet</span><span>↗</span></a>
+          <button type="button" class="btn-primary portfolio-viewer-open" data-viewer="makingof"><span>Voir le portfolio complet</span><span>↗</span></button>
           <a href="assets/portfolio/parcours-makingof.pdf" class="btn-primary" download><span>Télécharger PDF</span><span>↓</span></a>
         </div>
       </div>
@@ -1239,7 +1314,7 @@
           <li>Carrousel prévention AGM</li><li>Gestion de pages professionnelles</li>
         </ul>
         <div class="portfolio-actions">
-          <a href="assets/portfolio/conceptions-graphiques.pdf" class="btn-primary" target="_blank" rel="noopener"><span>Voir le portfolio complet</span><span>↗</span></a>
+          <button type="button" class="btn-primary portfolio-viewer-open" data-viewer="graphisme"><span>Voir le portfolio complet</span><span>↗</span></button>
           <a href="assets/portfolio/conceptions-graphiques.pdf" class="btn-primary" download><span>Télécharger PDF</span><span>↓</span></a>
         </div>
       </div>
@@ -1258,7 +1333,7 @@
           <li>Réception, praticiens & écran public</li><li>Administration en temps réel</li>
         </ul>
         <div class="portfolio-actions">
-          <a href="assets/portfolio/plateformes-web.pdf" class="btn-primary" target="_blank" rel="noopener"><span>Voir le portfolio complet</span><span>↗</span></a>
+          <button type="button" class="btn-primary portfolio-viewer-open" data-viewer="web"><span>Voir le portfolio complet</span><span>↗</span></button>
           <a href="assets/portfolio/plateformes-web.pdf" class="btn-primary" download><span>Télécharger PDF</span><span>↓</span></a>
         </div>
       </div>
@@ -1461,6 +1536,23 @@
   <a href="https://www.olccreative.com" target="_blank" class="footer-site">olccreative.com</a>
 </footer>
 
+<!-- PORTFOLIO VIEWER -->
+<div class="portfolio-viewer" id="portfolioViewer" role="dialog" aria-modal="true" aria-labelledby="portfolioViewerTitle" aria-hidden="true">
+  <div class="portfolio-viewer-header">
+    <div>
+      <div class="portfolio-viewer-title" id="portfolioViewerTitle">Portfolio</div>
+      <div class="portfolio-viewer-count" id="portfolioViewerCount">Page 1 / 1</div>
+    </div>
+    <button type="button" class="portfolio-viewer-close" id="portfolioViewerClose" aria-label="Fermer la visionneuse">×</button>
+  </div>
+  <div class="portfolio-viewer-stage">
+    <button type="button" class="portfolio-viewer-nav portfolio-viewer-prev" id="portfolioViewerPrev" aria-label="Page précédente">‹</button>
+    <img class="portfolio-viewer-image" id="portfolioViewerImage" src="" alt="Page du portfolio">
+    <button type="button" class="portfolio-viewer-nav portfolio-viewer-next" id="portfolioViewerNext" aria-label="Page suivante">›</button>
+  </div>
+  <div class="portfolio-viewer-help">Utilisez les flèches pour parcourir les pages · Échap pour fermer</div>
+</div>
+
 <script>
   // Cursor
   const cursor = document.getElementById('cursor');
@@ -1545,6 +1637,91 @@
         panel.hidden = !selected;
       });
     });
+  });
+
+  // Integrated lightweight portfolio viewer
+  const viewerSets = {
+    makingof: { title: 'Parcours professionnel & Making-of', folder: 'makingof', pages: 9 },
+    graphisme: { title: 'Conceptions graphiques & Social Media', folder: 'graphisme', pages: 20 },
+    web: { title: 'Plateformes web opérationnelles', folder: 'web', pages: 9 }
+  };
+  const portfolioViewer = document.getElementById('portfolioViewer');
+  const viewerImage = document.getElementById('portfolioViewerImage');
+  const viewerTitle = document.getElementById('portfolioViewerTitle');
+  const viewerCount = document.getElementById('portfolioViewerCount');
+  const viewerPrev = document.getElementById('portfolioViewerPrev');
+  const viewerNext = document.getElementById('portfolioViewerNext');
+  const viewerClose = document.getElementById('portfolioViewerClose');
+  let activeViewerSet = null;
+  let activeViewerPage = 1;
+  let viewerTouchStart = 0;
+
+  function viewerPageUrl(set, page) {
+    return `assets/portfolio/pages/${set.folder}/page-${String(page).padStart(2, '0')}.webp`;
+  }
+
+  function renderViewerPage() {
+    if (!activeViewerSet) return;
+    viewerImage.src = viewerPageUrl(activeViewerSet, activeViewerPage);
+    viewerImage.alt = `${activeViewerSet.title} - page ${activeViewerPage}`;
+    viewerTitle.textContent = activeViewerSet.title;
+    viewerCount.textContent = `Page ${activeViewerPage} / ${activeViewerSet.pages}`;
+    viewerPrev.disabled = activeViewerPage === 1;
+    viewerNext.disabled = activeViewerPage === activeViewerSet.pages;
+    [activeViewerPage - 1, activeViewerPage + 1].forEach(page => {
+      if (page >= 1 && page <= activeViewerSet.pages) {
+        const preload = new Image();
+        preload.src = viewerPageUrl(activeViewerSet, page);
+      }
+    });
+  }
+
+  function openPortfolioViewer(key) {
+    activeViewerSet = viewerSets[key];
+    if (!activeViewerSet) return;
+    activeViewerPage = 1;
+    portfolioViewer.classList.add('open');
+    portfolioViewer.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('viewer-open');
+    renderViewerPage();
+    viewerClose.focus();
+  }
+
+  function closePortfolioViewer() {
+    portfolioViewer.classList.remove('open');
+    portfolioViewer.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('viewer-open');
+    viewerImage.src = '';
+    activeViewerSet = null;
+  }
+
+  function changeViewerPage(direction) {
+    if (!activeViewerSet) return;
+    activeViewerPage = Math.min(activeViewerSet.pages, Math.max(1, activeViewerPage + direction));
+    renderViewerPage();
+  }
+
+  document.querySelectorAll('.portfolio-viewer-open').forEach(button => {
+    button.addEventListener('click', () => openPortfolioViewer(button.dataset.viewer));
+  });
+  viewerClose.addEventListener('click', closePortfolioViewer);
+  viewerPrev.addEventListener('click', () => changeViewerPage(-1));
+  viewerNext.addEventListener('click', () => changeViewerPage(1));
+  portfolioViewer.addEventListener('click', event => {
+    if (event.target === portfolioViewer) closePortfolioViewer();
+  });
+  portfolioViewer.addEventListener('touchstart', event => {
+    viewerTouchStart = event.changedTouches[0].clientX;
+  }, { passive: true });
+  portfolioViewer.addEventListener('touchend', event => {
+    const distance = event.changedTouches[0].clientX - viewerTouchStart;
+    if (Math.abs(distance) > 55) changeViewerPage(distance < 0 ? 1 : -1);
+  }, { passive: true });
+  document.addEventListener('keydown', event => {
+    if (!portfolioViewer.classList.contains('open')) return;
+    if (event.key === 'Escape') closePortfolioViewer();
+    if (event.key === 'ArrowLeft') changeViewerPage(-1);
+    if (event.key === 'ArrowRight') changeViewerPage(1);
   });
 </script>
 </body>
