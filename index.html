@@ -19,7 +19,10 @@
 
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-  html { scroll-behavior: smooth; }
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 120px;
+  }
 
   body {
     background: linear-gradient(135deg, #06101F 0%, #0B2140 52%, #102B50 100%);
@@ -441,7 +444,10 @@
   }
 
   /* PORTFOLIO */
-  .portfolio { background: linear-gradient(145deg, #08162B 0%, #102B50 100%); }
+  .portfolio {
+    background: linear-gradient(145deg, #08162B 0%, #102B50 100%);
+    scroll-margin-top: 120px;
+  }
   .portfolio-container { max-width: 1200px; margin: 0 auto; }
   .portfolio-intro { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 70px; align-items: end; margin-bottom: 56px; }
   .portfolio-lead { color: rgba(240,237,232,0.76); font-size: 17px; line-height: 1.85; }
@@ -451,7 +457,7 @@
   .portfolio-panel { display: none; grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); gap: 46px; padding: 30px; border: 1px solid rgba(255,255,255,0.1); background: rgba(5,14,28,0.62); box-shadow: 0 22px 70px rgba(0,0,0,0.2); }
   .portfolio-panel.active { display: grid; animation: fadeIn 0.45s both; }
   .portfolio-preview { min-height: 330px; overflow: hidden; border: 1px solid rgba(255,255,255,0.12); background: #0B1D36; }
-  .portfolio-preview img { width: 100%; height: 100%; display: block; object-fit: cover; object-position: center; }
+  .portfolio-preview img { width: 100%; height: 100%; display: block; object-fit: contain; object-position: center; }
   .portfolio-meta { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 18px; }
   .portfolio-badge { border: 1px solid rgba(201,168,76,0.35); color: var(--gold-light); padding: 7px 10px; font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; }
   .portfolio-panel h3 { font-size: clamp(25px, 3vw, 38px); line-height: 1.2; margin-bottom: 16px; }
@@ -461,6 +467,15 @@
   .portfolio-projects li::before { content: ''; position: absolute; left: 0; top: 8px; width: 5px; height: 5px; border-radius: 50%; background: var(--gold); }
   .portfolio-actions { display: flex; flex-wrap: wrap; gap: 14px; }
   .portfolio-actions .btn-primary { padding: 15px 24px; }
+
+  @media (min-width: 901px) {
+    .portfolio-panel { align-items: start; }
+    .portfolio-preview {
+      min-height: 0;
+      aspect-ratio: 1.415 / 1;
+    }
+    .portfolio-preview img { height: auto; aspect-ratio: 1.415 / 1; }
+  }
 
   /* SKILLS */
   .skills { background: var(--dark3); }
