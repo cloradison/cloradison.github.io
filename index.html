@@ -440,6 +440,28 @@
     font-size: 12px;
   }
 
+  /* PORTFOLIO */
+  .portfolio { background: linear-gradient(145deg, #08162B 0%, #102B50 100%); }
+  .portfolio-container { max-width: 1200px; margin: 0 auto; }
+  .portfolio-intro { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 70px; align-items: end; margin-bottom: 56px; }
+  .portfolio-lead { color: rgba(240,237,232,0.76); font-size: 17px; line-height: 1.85; }
+  .portfolio-tabs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 28px; }
+  .portfolio-tab { border: 1px solid rgba(201,168,76,0.32); background: rgba(5,16,31,0.55); color: var(--white); padding: 17px 18px; font: 600 12px/1.3 'Montserrat', sans-serif; letter-spacing: 1.5px; text-transform: uppercase; cursor: pointer; transition: background 0.3s, color 0.3s, border-color 0.3s; }
+  .portfolio-tab:hover, .portfolio-tab.active { background: var(--gold); color: #071426; border-color: var(--gold); }
+  .portfolio-panel { display: none; grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); gap: 46px; padding: 30px; border: 1px solid rgba(255,255,255,0.1); background: rgba(5,14,28,0.62); box-shadow: 0 22px 70px rgba(0,0,0,0.2); }
+  .portfolio-panel.active { display: grid; animation: fadeIn 0.45s both; }
+  .portfolio-preview { min-height: 330px; overflow: hidden; border: 1px solid rgba(255,255,255,0.12); background: #0B1D36; }
+  .portfolio-preview img { width: 100%; height: 100%; display: block; object-fit: cover; object-position: center; }
+  .portfolio-meta { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 18px; }
+  .portfolio-badge { border: 1px solid rgba(201,168,76,0.35); color: var(--gold-light); padding: 7px 10px; font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; }
+  .portfolio-panel h3 { font-size: clamp(25px, 3vw, 38px); line-height: 1.2; margin-bottom: 16px; }
+  .portfolio-summary { color: rgba(240,237,232,0.72); font-size: 15px; line-height: 1.8; margin-bottom: 20px; }
+  .portfolio-projects { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 9px 20px; margin-bottom: 25px; }
+  .portfolio-projects li { position: relative; padding-left: 16px; color: rgba(240,237,232,0.78); font-size: 13px; line-height: 1.5; }
+  .portfolio-projects li::before { content: ''; position: absolute; left: 0; top: 8px; width: 5px; height: 5px; border-radius: 50%; background: var(--gold); }
+  .portfolio-actions { display: flex; flex-wrap: wrap; gap: 14px; }
+  .portfolio-actions .btn-primary { padding: 15px 24px; }
+
   /* SKILLS */
   .skills { background: var(--dark3); }
   .skills-container { max-width: 1200px; margin: 0 auto; }
@@ -908,6 +930,8 @@
     body, .skill-card, .btn-primary { cursor: auto; }
     section { padding: 80px 28px; }
     .about-grid { grid-template-columns: 1fr; gap: 48px; }
+    .portfolio-intro { grid-template-columns: 1fr; gap: 24px; }
+    .portfolio-panel { grid-template-columns: 1fr; }
     .skills-grid { grid-template-columns: repeat(2, 1fr); }
     .edu-grid { grid-template-columns: 1fr; }
     .lang-container { grid-template-columns: 1fr; }
@@ -922,6 +946,11 @@
       height: 52px;
     }
     section { padding: 64px 20px; }
+    .portfolio-tabs { grid-template-columns: 1fr; }
+    .portfolio-panel { padding: 18px; gap: 26px; }
+    .portfolio-preview { min-height: 210px; }
+    .portfolio-projects { grid-template-columns: 1fr; }
+    .portfolio-actions .btn-primary { width: 100%; justify-content: center; }
     .skills-grid { grid-template-columns: 1fr; }
     .skill-card { padding: 30px 22px; }
     .contact-actions {
@@ -949,6 +978,7 @@
   <div class="nav-links">
     <a href="#about">Profil</a>
     <a href="#experience">Expérience</a>
+    <a href="#portfolio">Portfolio</a>
     <a href="#skills">Compétences</a>
     <a href="#education">Formation</a>
     <a href="#contact">Contact</a>
@@ -1145,6 +1175,81 @@
     <span class="marquee-text" style="color:var(--gold)">·</span>
   </div>
 </div>
+
+<!-- PORTFOLIO -->
+<section class="portfolio" id="portfolio">
+  <div class="portfolio-container">
+    <div class="portfolio-intro">
+      <div>
+        <div class="section-label">Réalisations</div>
+        <h2 class="section-title">Portfolio<br>sélectionné</h2>
+      </div>
+      <p class="portfolio-lead">Une sélection documentée de projets menés en conditions réelles : production audiovisuelle, conception graphique, communication digitale et création de plateformes web opérationnelles.</p>
+    </div>
+
+    <div class="portfolio-tabs" role="tablist" aria-label="Catégories du portfolio">
+      <button class="portfolio-tab active" type="button" role="tab" aria-selected="true" aria-controls="portfolio-makingof" data-portfolio-tab="portfolio-makingof">Parcours & Making-of</button>
+      <button class="portfolio-tab" type="button" role="tab" aria-selected="false" aria-controls="portfolio-graphisme" data-portfolio-tab="portfolio-graphisme">Conceptions graphiques</button>
+      <button class="portfolio-tab" type="button" role="tab" aria-selected="false" aria-controls="portfolio-web" data-portfolio-tab="portfolio-web">Plateformes web</button>
+    </div>
+
+    <article class="portfolio-panel active" id="portfolio-makingof" role="tabpanel">
+      <div class="portfolio-preview"><img src="assets/portfolio/makingof-cover.webp" alt="Aperçu du parcours professionnel et making-of de Clo Radison" loading="lazy"></div>
+      <div>
+        <div class="portfolio-meta"><span class="portfolio-badge">20 photos</span><span class="portfolio-badge">6 domaines</span></div>
+        <h3>Parcours professionnel & making-of</h3>
+        <p class="portfolio-summary">Des productions, formations et coulisses qui montrent la pratique concrète des outils et des environnements de création, de la prise de vue à la postproduction.</p>
+        <ul class="portfolio-projects">
+          <li>Tournage & collaboration audiovisuelle</li><li>Réalisation & production terrain</li>
+          <li>Photographie & prise de vue aérienne</li><li>Motion design, 3D & animation</li>
+          <li>Postproduction & conception graphique</li><li>Production événementielle & régie</li>
+        </ul>
+        <div class="portfolio-actions">
+          <a href="assets/portfolio/parcours-makingof.pdf" class="btn-primary" target="_blank" rel="noopener"><span>Voir le portfolio complet</span><span>↗</span></a>
+          <a href="assets/portfolio/parcours-makingof.pdf" class="btn-primary" download><span>Télécharger PDF</span><span>↓</span></a>
+        </div>
+      </div>
+    </article>
+
+    <article class="portfolio-panel" id="portfolio-graphisme" role="tabpanel" hidden>
+      <div class="portfolio-preview"><img src="assets/portfolio/graphisme-cover.webp" alt="Aperçu des conceptions graphiques de Clo Radison" loading="lazy"></div>
+      <div>
+        <div class="portfolio-meta"><span class="portfolio-badge">17 références</span><span class="portfolio-badge">Print & digital</span></div>
+        <h3>Conceptions graphiques & social media</h3>
+        <p class="portfolio-summary">Conception, composition, mise en page et adaptation de supports pour TV Plus Madagascar, AGM, Maeva Humanitaire et différents projets événementiels.</p>
+        <ul class="portfolio-projects">
+          <li>Campagne casting Kopy Kolé</li><li>Mille Sourires - levée de fonds</li>
+          <li>Habillage véhicule TV Plus</li><li>Banderole, billet & carte menu</li>
+          <li>Identité anniversaire & roll-up</li><li>Panneau 4 × 3 & affichage</li>
+          <li>Carrousel prévention AGM</li><li>Gestion de pages professionnelles</li>
+        </ul>
+        <div class="portfolio-actions">
+          <a href="assets/portfolio/conceptions-graphiques.pdf" class="btn-primary" target="_blank" rel="noopener"><span>Voir le portfolio complet</span><span>↗</span></a>
+          <a href="assets/portfolio/conceptions-graphiques.pdf" class="btn-primary" download><span>Télécharger PDF</span><span>↓</span></a>
+        </div>
+      </div>
+    </article>
+
+    <article class="portfolio-panel" id="portfolio-web" role="tabpanel" hidden>
+      <div class="portfolio-preview"><img src="assets/portfolio/web-cover.webp" alt="Aperçu des plateformes web conçues par Clo Radison" loading="lazy"></div>
+      <div>
+        <div class="portfolio-meta"><span class="portfolio-badge">2 plateformes</span><span class="portfolio-badge">UX & workflows</span></div>
+        <h3>Plateformes web opérationnelles</h3>
+        <p class="portfolio-summary">Deux solutions orientées usage, pensées de l’interface utilisateur jusqu’au processus métier, avec des écrans distincts selon les rôles.</p>
+        <ul class="portfolio-projects">
+          <li>Billetterie événementielle en ligne</li><li>Réservation & calcul du total</li>
+          <li>Administration & suivi des paiements</li><li>Billets uniques avec QR code</li>
+          <li>Contrôle d’accès au Jour-J</li><li>Maeva Flow - file d’attente</li>
+          <li>Réception, praticiens & écran public</li><li>Administration en temps réel</li>
+        </ul>
+        <div class="portfolio-actions">
+          <a href="assets/portfolio/plateformes-web.pdf" class="btn-primary" target="_blank" rel="noopener"><span>Voir le portfolio complet</span><span>↗</span></a>
+          <a href="assets/portfolio/plateformes-web.pdf" class="btn-primary" download><span>Télécharger PDF</span><span>↓</span></a>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
 
 <!-- SKILLS -->
 <section class="skills" id="skills">
@@ -1407,6 +1512,25 @@
 
   const langSection = document.querySelector('.languages-section');
   if (langSection) langObserver.observe(langSection);
+
+  // Portfolio tabs
+  const portfolioTabs = document.querySelectorAll('[data-portfolio-tab]');
+  const portfolioPanels = document.querySelectorAll('.portfolio-panel');
+  portfolioTabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const targetId = tab.getAttribute('data-portfolio-tab');
+      portfolioTabs.forEach(item => {
+        const selected = item === tab;
+        item.classList.toggle('active', selected);
+        item.setAttribute('aria-selected', selected ? 'true' : 'false');
+      });
+      portfolioPanels.forEach(panel => {
+        const selected = panel.id === targetId;
+        panel.classList.toggle('active', selected);
+        panel.hidden = !selected;
+      });
+    });
+  });
 </script>
 </body>
 </html> 
