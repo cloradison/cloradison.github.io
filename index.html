@@ -182,7 +182,7 @@
     text-transform: uppercase;
     color: var(--silver);
     line-height: 2;
-    margin-bottom: 60px;
+    margin-bottom: 24px;
     max-width: 520px;
     animation: fadeUp 1s 0.7s both;
   }
@@ -191,6 +191,29 @@
     display: flex;
     gap: 48px;
     animation: fadeUp 1s 0.9s both;
+  }
+
+  .hero-expertise {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px 18px;
+    max-width: 560px;
+    margin-bottom: 34px;
+    animation: fadeUp 1s 0.8s both;
+  }
+  .hero-expertise span {
+    position: relative;
+    padding-left: 15px;
+    color: #FFFFFF;
+    font-size: 11px;
+    line-height: 1.45;
+    letter-spacing: 0.6px;
+  }
+  .hero-expertise span::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: var(--gold);
   }
   .hero-stats-mobile { display: none; }
   .stat-num {
@@ -976,10 +999,19 @@
     }
     .hero-tagline {
       max-width: 100%;
-      margin-bottom: 0;
+      margin-bottom: 20px;
       font-size: 12px;
       letter-spacing: 1px;
       line-height: 1.8;
+    }
+    .hero-expertise {
+      grid-template-columns: 1fr;
+      gap: 7px;
+      margin-bottom: 0;
+    }
+    .hero-expertise span {
+      font-size: 10px;
+      letter-spacing: 0.35px;
     }
     .hero-left .hero-stats { display: none; }
     .hero-stats-mobile {
@@ -1078,13 +1110,22 @@
 <!-- HERO -->
 <section class="hero" id="hero">
   <div class="hero-left">
-    <div class="hero-eyebrow">Multimedia Designer · Audiovisual Specialist</div>
+    <div class="hero-eyebrow">Multimedia Designer Senior · Audiovisual Specialist · Web &amp; Digital Solutions</div>
     <div class="hero-name"><em>RADISON</em></div>
     <div class="hero-lastname">CLO GERMAIN STÉPHANO</div>
     <div class="hero-tagline">
-      Créateur de contenus visuels<br>
-      &amp; Spécialiste audiovisuel<br>
+      Créateur de contenus visuels &amp; solutions digitales<br>
+      Spécialiste audiovisuel<br>
       basé à Antananarivo, Madagascar
+    </div>
+    <div class="hero-expertise" aria-label="Expertises clés">
+      <span>Design graphique &amp; branding</span>
+      <span>Audiovisuel &amp; motion design</span>
+      <span>Web design &amp; plateformes digitales</span>
+      <span>Community management</span>
+      <span>Photographie &amp; tournage</span>
+      <span>UI simple &amp; expérience utilisateur</span>
+      <span>Maintenance &amp; support informatique</span>
     </div>
     <div class="hero-stats">
       <div>
@@ -1092,11 +1133,11 @@
         <div class="stat-label">Ans d'expérience</div>
       </div>
       <div>
-        <div class="stat-num">5</div>
+        <div class="stat-num">7</div>
         <div class="stat-label">Domaines<br>de compétences</div>
       </div>
       <div>
-        <div class="stat-num">2</div>
+        <div class="stat-num">3</div>
         <div class="stat-label">Langues</div>
       </div>
     </div>
@@ -1120,11 +1161,11 @@
         <div class="stat-label">Ans d'expérience</div>
       </div>
       <div>
-        <div class="stat-num">5</div>
+        <div class="stat-num">7</div>
         <div class="stat-label">Domaines<br>de compétences</div>
       </div>
       <div>
-        <div class="stat-num">2</div>
+        <div class="stat-num">3</div>
         <div class="stat-label">Langues</div>
       </div>
     </div>
@@ -1480,11 +1521,7 @@
           <span>Envoyer un message</span>
           <span>→</span>
         </a>
-        <a href="assets/cv-clo-radison-pro-2026.pdf" class="btn-primary" target="_blank" rel="noopener">
-          <span>Voir le CV</span>
-          <span>↗</span>
-        </a>
-        <a href="assets/cv-clo-radison-pro-2026.pdf" class="btn-primary" download="CV-Clo-Radison-Pro-2026.pdf">
+        <a href="assets/CV%20CLO%202026.pdf" class="btn-primary" download="CV-Clo-Radison-Pro-2026.pdf">
           <span>Télécharger CV</span>
           <span>↓</span>
         </a>
