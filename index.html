@@ -78,30 +78,9 @@
     z-index: 100;
     padding: 28px 60px;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
     background: linear-gradient(to bottom, rgba(10,10,12,0.95) 0%, transparent 100%);
-  }
-  .nav-logo {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 64px;
-    height: 56px;
-    padding: 3px;
-    background: #FFFFFF;
-    border-radius: 10px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.28);
-    overflow: hidden;
-  }
-  .nav-logo img {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    object-position: center;
-    transform: scale(1.08);
-    transform-origin: center;
   }
   .nav-links { display: flex; gap: 40px; }
   .nav-links a {
@@ -1055,10 +1034,6 @@
 
   @media (max-width: 560px) {
     nav { padding: 18px 20px; }
-    .nav-logo {
-      width: 58px;
-      height: 52px;
-    }
     section { padding: 64px 20px; }
     .portfolio-tabs { grid-template-columns: 1fr; }
     .portfolio-panel { padding: 18px; gap: 26px; }
@@ -1094,9 +1069,6 @@
 
 <!-- NAV -->
 <nav>
-  <a class="nav-logo" href="#hero" aria-label="Retour à l'accueil">
-    <img src="assets/clo.png" alt="Logo Clo">
-  </a>
   <div class="nav-links">
     <a href="#about">Profil</a>
     <a href="#experience">Expérience</a>
@@ -1112,7 +1084,7 @@
   <div class="hero-left">
     <div class="hero-eyebrow">Multimedia Designer Senior · Audiovisual Specialist · Web &amp; Digital Solutions</div>
     <div class="hero-name"><em>RADISON</em></div>
-    <div class="hero-lastname">CLO GERMAIN STÉPHANO</div>
+    <div class="hero-lastname">clo germain stéphano</div>
     <div class="hero-tagline">
       Créateur de contenus visuels &amp; solutions digitales<br>
       Spécialiste audiovisuel<br>
